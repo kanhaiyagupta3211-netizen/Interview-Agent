@@ -100,15 +100,29 @@ app.post('/api/submit-answer', async (req, res) => {
     interviewState.answers.push({ question: currentQ, answer });
     interviewState.currentIndex++;
 
-    const feedbackPrompt = `Give 2-line feedback on this answer:\nQuestion: ${currentQ}\nAnswer: ${answer}`;
+    const feedbackPrompt = `You are a technical interviewer. Give 2-line constructive feedback on this answer:
+Question: ${currentQ}
+Answer: ${answer}
+
+After the feedback, on a new line, add exactly one of these tags (nothing else on that line):
+[GOOD] if the answer was solid and correct
+[IMPROVE] if the answer had gaps, mistakes, or could be significantly better`;
+
     const fbResult = await ai.models.generateContent({
       model: MODEL,
       contents: feedbackPrompt,
+      config: { temperature: 0.7 },
     });
-    const feedback = fbResult.text;
+    const rawFeedback = fbResult.text;
+
+    let feedbackType = "neutral";
+    if (rawFeedback.includes("[GOOD]")) feedbackType = "good";
+    else if (rawFeedback.includes("[IMPROVE]")) feedbackType = "improve";
+
+    const feedback = rawFeedback.replace(/\[GOOD\]|\[IMPROVE\]/g, "").trim();
 
     const done = interviewState.currentIndex >= interviewState.questions.length;
-    res.json({ feedback, nextQuestion: !done, done });
+    res.json({ feedback, feedbackType, nextQuestion: !done, done });
   } catch (error) {
     console.error("❌ Error:", error);
     res.status(500).json({ error: error.message });

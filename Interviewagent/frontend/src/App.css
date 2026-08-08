@@ -188,3 +188,210 @@ textarea::placeholder {
     padding: 22px;
   }
 }
+
+/* ===== Welcome Screen (Name Input) ===== */
+.welcome-screen {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.welcome-screen h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.welcome-screen p {
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.welcome-screen input {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 20px;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-light);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.welcome-screen input:focus {
+  outline: none;
+  border-color: var(--cyan);
+}
+
+/* ===== Home Menu ===== */
+.home-menu {
+  text-align: center;
+}
+
+.home-menu h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.home-menu > p {
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.menu-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  backdrop-filter: blur(16px);
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--violet);
+  box-shadow: 0 8px 28px rgba(124, 58, 237, 0.3);
+}
+
+.menu-icon {
+  font-size: 2.2rem;
+}
+
+.menu-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.menu-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: none;
+  box-shadow: none;
+  color: var(--text-light);
+}
+
+/* ===== Guide Screen ===== */
+.guide-screen h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.guide-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.tip-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(16px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+}
+
+.tip-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.tip-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 1rem;
+  margin: 0 0 8px;
+  color: var(--gold);
+}
+
+.tip-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ===== Loading Spinner ===== */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== Feedback color coding ===== */
+.feedback-good {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.15), rgba(34, 211, 238, 0.1));
+  border-color: rgba(74, 222, 128, 0.4);
+}
+
+.feedback-good h3 {
+  color: #4ade80;
+}
+
+.feedback-improve {
+  background: linear-gradient(135deg, rgba(248, 113, 113, 0.15), rgba(251, 191, 36, 0.1));
+  border-color: rgba(248, 113, 113, 0.4);
+}
+
+.feedback-improve h3 {
+  color: #f87171;
+}
+
+/* ===== Mobile responsive for new sections ===== */
+@media (max-width: 480px) {
+  .menu-options,
+  .tips-grid {
+    grid-template-columns: 1fr;
+  }
+}
