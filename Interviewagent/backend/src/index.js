@@ -38,11 +38,16 @@ app.post('/api/generate-questions', async (req, res) => {
     const { topic, level } = req.body;
     console.log("📝 Generating questions for:", topic, level);
 
-    const prompt = `Generate 5 ${level} level interview questions about ${topic}. Return ONLY the questions numbered 1 to 5.`;
-    const result = await ai.models.generateContent({
-      model: MODEL,
-      contents: prompt,
-    });
+   const prompt = `You are an experienced technical interviewer conducting a live interview. Generate 5 unique, non-generic ${level} level interview questions about ${topic}. 
+Avoid overused textbook questions. Mix question types: some conceptual, some scenario-based ("what would you do if..."), some practical.
+Vary the phrasing and angle each time so no two interview sessions feel identical.
+Return ONLY the 5 questions, numbered 1 to 5, with no extra text.`;
+  
+const result = await ai.models.generateContent({
+  model: MODEL,
+  contents: prompt,
+  config: { temperature: 1.0 },
+});
     const text = result.text;
     console.log("📄 Raw response:", text);
 
