@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🤖 AI Interview Agent</h1>
-        <p>Practice with AI-powered interview coaching</p>
-      </header>
+  <h1><span className="emoji">🤖</span> <span className="gradient-text">AI Interview Agent</span></h1>
+  <p>Practice with AI-powered interview coaching</p>
+</header>
       <main>
         {screen === "home" && (
           <Home

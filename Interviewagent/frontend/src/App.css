@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 :root {
@@ -45,11 +46,20 @@ header h1 {
   font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 800;
   margin: 0 0 8px;
+  line-height: 1.3;
+  padding-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+header h1 .gradient-text {
   background: linear-gradient(90deg, var(--coral), var(--violet) 50%, var(--cyan));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  letter-spacing: -0.02em;
+}
+
+header h1 .emoji {
+  -webkit-text-fill-color: initial;
 }
 
 header p {
@@ -393,5 +403,141 @@ textarea::placeholder {
   .menu-options,
   .tips-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — Tablet (768px and below)
+   ============================================ */
+@media (max-width: 768px) {
+  .app {
+    padding: 32px 20px 60px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .menu-options,
+  .tips-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — Mobile (480px and below)
+   ============================================ */
+@media (max-width: 480px) {
+  .app {
+    padding: 24px 14px 50px;
+  }
+
+  header h1 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    padding-bottom: 4px;
+  }
+
+  header p {
+    font-size: 0.85rem;
+  }
+
+  .card {
+    padding: 18px;
+    border-radius: 16px;
+  }
+
+  .card h2 {
+    font-size: 1.15rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 13px 18px;
+    font-size: 0.95rem;
+  }
+
+  .back-btn {
+    width: auto;
+    padding: 8px 14px;
+  }
+
+  .welcome-screen {
+    padding: 32px 8px;
+  }
+
+  .welcome-screen h2 {
+    font-size: 1.4rem;
+  }
+
+  .welcome-screen input {
+    max-width: 100%;
+    padding: 12px 14px;
+  }
+
+  .home-menu h2 {
+    font-size: 1.4rem;
+  }
+
+  .menu-options {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .menu-card {
+    padding: 22px 16px;
+  }
+
+  .menu-icon {
+    font-size: 1.8rem;
+  }
+
+  .guide-screen h2 {
+    font-size: 1.4rem;
+  }
+
+  .tips-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tip-card {
+    padding: 16px;
+  }
+
+  .question-box {
+    padding: 16px;
+  }
+
+  .question-box p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  textarea {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  .feedback-box {
+    padding: 16px;
+  }
+
+  .feedback-box p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================
+   RESPONSIVE — Very small phones (360px and below)
+   ============================================ */
+@media (max-width: 360px) {
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  .card {
+    padding: 14px;
   }
 }
