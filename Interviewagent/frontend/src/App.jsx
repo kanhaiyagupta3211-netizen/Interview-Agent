@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5002";
+
 function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
@@ -10,12 +12,12 @@ function App() {
   const startInterview = async () => {
     setLoading(true);
     try {
-      await fetch("http://localhost:5002/api/generate-questions", {
+      await fetch(`${API_URL}/api/generate-questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ topic: "React", level: "Intermediate" })
       });
-      const res = await fetch("http://localhost:5002/api/next-question");
+      const res = await fetch(`${API_URL}/api/next-question`);
       const data = await res.json();
       if (data.question) {
         setQuestion(data.question);
@@ -37,7 +39,7 @@ function App() {
     }
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:5002/api/submit-answer", {
+      const response = await fetch(`${API_URL}/api/submit-answer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ answer })
@@ -49,13 +51,13 @@ function App() {
       setAnswer("");
 
       if (data.done) {
-        const reportRes = await fetch("http://localhost:5002/api/report");
+        const reportRes = await fetch(`${API_URL}/api/report`);
         const reportData = await reportRes.json();
         alert("🎉 Interview Completed!\n\n" + reportData.report);
         setQuestion("");
         setFeedback("");
       } else if (data.nextQuestion) {
-        const qRes = await fetch("http://localhost:5002/api/next-question");
+        const qRes = await fetch(`${API_URL}/api/next-question`);
         const qData = await qRes.json();
         setQuestion(qData.question);
       }
