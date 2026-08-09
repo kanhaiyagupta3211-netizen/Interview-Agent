@@ -1,16 +1,15 @@
 import { useState } from "react";
 
-function Home({ onStartInterview, onShowGuide }) {
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+function Home({ userName, setUserName, onStartInterview, onShowGuide }) {
+  const [nameInput, setNameInput] = useState(userName);
 
   const handleContinue = () => {
-    if (name.trim()) {
-      setSubmitted(true);
+    if (nameInput.trim()) {
+      setUserName(nameInput.trim());
     }
   };
 
-  if (!submitted) {
+  if (!userName) {
     return (
       <div className="welcome-screen">
         <h2>👋 Welcome!</h2>
@@ -18,11 +17,11 @@ function Home({ onStartInterview, onShowGuide }) {
         <input
           type="text"
           placeholder="Your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={nameInput}
+          onChange={(e) => setNameInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleContinue()}
         />
-        <button onClick={handleContinue} disabled={!name.trim()}>
+        <button onClick={handleContinue} disabled={!nameInput.trim()}>
           Continue
         </button>
       </div>
@@ -31,7 +30,7 @@ function Home({ onStartInterview, onShowGuide }) {
 
   return (
     <div className="home-menu">
-      <h2>Welcome, {name}! 🎯</h2>
+      <h2>Welcome, {userName}! 🎯</h2>
       <p>What would you like to do?</p>
       <div className="menu-options">
         <button className="menu-card" onClick={onStartInterview}>

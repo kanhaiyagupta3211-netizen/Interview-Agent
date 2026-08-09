@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5002";
 
-function Interview({ onBack }) {
+function Interview({ onBack, onFinish }) {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -52,14 +52,13 @@ function Interview({ onBack }) {
       setFeedback(data.feedback || "");
       setFeedbackType(data.feedbackType || "neutral");
       setAnswer("");
-
-      if (data.done) {
+    if (data.done) {
         const reportRes = await fetch(`${API_URL}/api/report`);
         const reportData = await reportRes.json();
-        alert("🎉 Interview Completed!\n\n" + reportData.report);
         setQuestion("");
         setFeedback("");
         setStarted(false);
+        onFinish(reportData.report);
       } else if (data.nextQuestion) {
         const qRes = await fetch(`${API_URL}/api/next-question`);
         const qData = await qRes.json();
@@ -77,9 +76,14 @@ function Interview({ onBack }) {
       <div className="card">
         <h2>Interview Practice</h2>
         {!started && (
-          <button onClick={startInterview} disabled={loading}>
-            {loading ? <span className="spinner"></span> : "🎯 Start Interview"}
-          </button>
+          <>
+            <button onClick={startInterview} disabled={loading}>
+              {loading ? <span className="spinner"></span> : "🎯 Start Interview"}
+            </button>
+            {loading && (
+              <p className="loading-hint">First load can take 20-30 seconds while the AI wakes up ⏳</p>
+            )}
+          </>
         )}
         {question && (
           <div className="question-box">

@@ -541,3 +541,52 @@ textarea::placeholder {
     padding: 14px;
   }
 }
+
+/* ===== Report Screen ===== */
+.report-card {
+  max-width: 100%;
+}
+
+.report-card h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.report-content {
+  line-height: 1.6;
+}
+
+.report-content h2,
+.report-content h3 {
+  font-family: 'Sora', sans-serif;
+  color: var(--gold);
+  margin: 20px 0 10px;
+}
+
+.report-content p {
+  margin: 8px 0;
+  color: var(--text-light);
+}
+
+.report-content li {
+  margin: 6px 0 6px 20px;
+  color: var(--text-light);
+}
+
+.report-content strong {
+  color: var(--cyan);
+}
+
+.report-content hr {
+  border: none;
+  border-top: 1px solid var(--glass-border);
+  margin: 20px 0;
+}
+
+
+.loading-hint {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+}
